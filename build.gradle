@@ -1,45 +1,20 @@
-apply plugin: 'groovy'
+apply plugin: 'java'
 
 def jdkVersion = 1.6
 def enc = 'UTF-8'
 sourceCompatibility = jdkVersion
 targetCompatibility = jdkVersion
 [compileJava, compileTestJava].each{ it.options.encoding = enc }
-[compileGroovy, compileTestGroovy].each{ it.options.encoding = enc }
-[compileGroovy, compileTestGroovy].each{ it.groovyOptions.encoding = enc }
 
+repositories {
+    mavenCentral()
+}
 
-//version = ""
-//archivesBaseName = ""
-
+dependencies {
+	testCompile 'org.easytesting:fest-swing-junit-4.3.1:1.2.1'
+	testCompile 'junit:junit:4.8.2'
+}
 
 task wrapper(type: Wrapper) {
     gradleVersion = '1.0-milestone-3'
 }
-
-repositories {
-	//flatDir(dirs: file("$projectDir/lib"))
-    mavenCentral()
-    //mavenRepo urls: [ "http://msgpack.org/maven2/",
-	//					"http://download.java.net/maven/2/",
-    //                  "http://repository.jboss.org/maven2/",
-    //                  "http://repository.jboss.org/nexus/content/groups/public-jboss/"]
-}
-
-dependencies {
-	groovy group: 'org.codehaus.groovy', name: 'groovy-all', version: '1.8.0'
-	testCompile group:'org.easytesting', name:'fest-swing-junit-4.3.1', version:'1.2.1'
-	testCompile 'junit:junit:4.8.1'
-}
-
-sourceSets.main.groovy.srcDirs+='src/main/java'
-sourceSets.main.java.srcDirs=[]
-
-//
-// executable jar need setting
-//
-//jar {
-//    from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
-//}
-//manifest.mainAttributes("Main-Class" : "")
-
