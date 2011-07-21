@@ -20,7 +20,7 @@ task wrapper(type: Wrapper) {
 }
 
 repositories {
-	//flatDir(dirs: file("$projectDir/lib"))
+		flatDir(dirs: file("$projectDir/libs"))
     mavenCentral()
     //mavenRepo urls: [ "http://msgpack.org/maven2/",
 	  //					"http://download.java.net/maven/2/",
@@ -30,8 +30,16 @@ repositories {
 
 dependencies {
 	groovy group: 'org.codehaus.groovy', name: 'groovy-all', version: '1.8.0'
-	testCompile group:'org.easytesting', name:'fest-swing-junit-4.3.1', version:'[1.2.1,)'
+
 	testCompile 'junit:junit:4.8.2'
+	testCompile group:'org.easytesting', name:'fest-swing-junit-4.3.1', version:'[1.2.1,)'
+	testCompile 'org.easytesting:fest-swing:1.2.1'
+	testCompile 'org.easytesting:fest-swing-junit-4.5:1.2.1'
+	testCompile 'org.spockframework:spock-core:0.5-groovy-1.7'
+	testCompile 'org.easyb:easyb:0.9.8'
+	testCompile module(':griffon-easyb:0.4-test')
+	testCompile module(':griffon-fest:0.6-test')
+	testCompile module(':griffon-spock:0.3-test')
 }
 
 sourceSets.main.groovy.srcDirs+='src/main/java'
